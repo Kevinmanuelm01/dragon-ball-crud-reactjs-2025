@@ -15,7 +15,7 @@ const styles = {
     padding: "10px 0",
   },
   image: {
-    width: 60,
+    width: 50,
     display: "block",
     margin: "0 auto",
   },

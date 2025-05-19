@@ -1,5 +1,5 @@
 // Importaciones necesarias de React y React Router
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PantallaListaPersonajeStyle";
 
@@ -25,7 +25,6 @@ function PantallaListaPersonaje() {
     affiliation: "",
   });
 
-  // --- Utilidades para personajes eliminados (localStorage) ---
   // Obtiene la lista de personajes eliminados desde localStorage
   const getPersonajesEliminados = () => {
     const data = localStorage.getItem("personajesEliminados");
@@ -49,12 +48,11 @@ function PantallaListaPersonaje() {
   };
 
   // --- Obtener personajes de la API y mezclar con los creados localmente ---
-  // Obtiene personajes de la API y mezcla con los creados localmente
-  const fetchPersonajes = async (pagina) => {
+  const fetchPersonajes = useCallback(async (pagina) => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://dragonball-api.com/api/characters?page=${pagina}&limit=10`
+        `https://dragonball-api.com/api/characters?page=${pagina}&limit=25`
       );
       const data = await response.json();
       const eliminados = getPersonajesEliminados();
@@ -75,34 +73,30 @@ function PantallaListaPersonaje() {
       setError("Error al cargar personajes");
       setLoading(false);
     }
-  };
+  }, []);
 
-  // --- Efecto para recargar personajes al cambiar de página ---
   // useEffect para recargar personajes al cambiar de página
   useEffect(() => {
     fetchPersonajes(pagina);
-  }, [pagina]);
+    console.log(pagina);
+  }, [pagina, fetchPersonajes]);
 
   // --- Manejar cambios en el filtro de búsqueda ---
-  // Maneja cambios en el filtro de búsqueda
   const handleFiltroChange = (e) => {
     setFiltro(e.target.value);
   };
 
   // --- Filtrar personajes por nombre ---
-  // Filtra personajes por nombre
   const personajesFiltrados = personajes.filter((p) =>
     p.name.toLowerCase().includes(filtro.toLowerCase())
   );
 
   // --- Navegar al detalle de un personaje ---
-  // Navega al detalle de un personaje
   const handleVerDetalle = (id) => {
     navigate(`/personaje/${id}`);
   };
 
   // --- Eliminar personaje (simulado y persistente en localStorage) ---
-  // Elimina un personaje (simulado y persistente en localStorage)
   const handleBorrar = (id) => {
     if (
       window.confirm("¿Seguro que quieres borrar este personaje? (Simulado)")
@@ -122,13 +116,11 @@ function PantallaListaPersonaje() {
   };
 
   // --- Navegar a la edición de un personaje ---
-  // Navega a la edición de un personaje
   const handleEditar = (id) => {
     navigate(`/personaje/${id}?edit=1`);
   };
 
   // --- Manejar cambios en el formulario de nuevo personaje ---
-  // Maneja cambios en el formulario de nuevo personaje
   const handleNuevoChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "image" && files && files[0]) {
@@ -143,7 +135,6 @@ function PantallaListaPersonaje() {
   };
 
   // --- Guardar nuevo personaje en localStorage y en la lista ---
-  // Guarda un nuevo personaje en localStorage y en la lista
   const handleNuevoSubmit = (e) => {
     e.preventDefault();
     // Genera un ID único (negativo para no chocar con la API)
