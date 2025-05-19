@@ -147,21 +147,36 @@ function PantallaListaPersonaje() {
   const handleNuevoSubmit = (e) => {
     e.preventDefault();
     // Genera un ID único (negativo para no chocar con la API)
-    const id = Date.now() * -1;
-    const nuevo = { ...nuevoPersonaje, id };
-    const creados = getPersonajesCreados();
-    setPersonajesCreados([nuevo, ...creados]);
-    setPersonajes([nuevo, ...personajes]);
-    setNuevoPersonaje({
-      name: "",
-      race: "",
-      ki: "",
-      gender: "",
-      image: "",
-      description: "",
-      affiliation: "",
-    });
-    setShowForm(false);
+
+    const MaxId = Math.max(...personajes.map((p) => p.id));
+    const id = MaxId + 1;
+
+    if (
+      nuevoPersonaje.name === "" ||
+      nuevoPersonaje.race === "" ||
+      nuevoPersonaje.ki === "" ||
+      nuevoPersonaje.gender === "" ||
+      nuevoPersonaje.image === "" ||
+      nuevoPersonaje.description === "" ||
+      nuevoPersonaje.affiliation === ""
+    ) {
+      alert("Todos los campos son requeridos");
+    } else {
+      const nuevo = { ...nuevoPersonaje, id };
+      const creados = getPersonajesCreados();
+      setPersonajesCreados([nuevo, ...creados]);
+      setPersonajes([nuevo, ...personajes]);
+      setNuevoPersonaje({
+        name: "",
+        race: "",
+        ki: "",
+        gender: "",
+        image: "",
+        description: "",
+        affiliation: "",
+      });
+      setShowForm(false);
+    }
   };
 
   // Renderizado del componente
@@ -365,6 +380,7 @@ function PantallaListaPersonaje() {
           <table style={styles.table}>
             <thead>
               <tr>
+                <th style={styles.th}>ID</th>
                 <th style={styles.th}>Imagen</th>
                 <th style={styles.th}>Nombre</th>
                 <th style={styles.th}>Raza</th>
@@ -375,6 +391,7 @@ function PantallaListaPersonaje() {
               {/* Iteración sobre los personajes filtrados */}
               {personajesFiltrados.map((p) => (
                 <tr key={p.id} style={{ borderBottom: "1px solid #ccc" }}>
+                  <td style={styles.td}>{p.id}</td>
                   <td style={styles.td}>
                     {/* Imagen del personaje */}
                     <img src={p.image} alt={p.name} style={styles.image} />
