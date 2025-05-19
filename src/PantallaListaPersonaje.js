@@ -443,8 +443,9 @@ function PantallaListaPersonaje() {
             </span>
             <button
               style={styles.actionButton}
-              onClick={() => setPagina((p) => Math.min(totalPaginas, p + 1))}
-              disabled={pagina === totalPaginas}>
+              onClick={() =>
+                setPagina((p) => (pagina === totalPaginas ? 1 : p + 1))
+              }>
               Siguiente
             </button>
           </div>
