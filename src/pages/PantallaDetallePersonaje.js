@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import styles from "./PantallaDetallePersonajeStyle";
+import styles from "../styles/PantallaDetallePersonajeStyle";
 
 // Esta función es el componente principal que muestra el detalle de un personaje, permite editarlo y borrarlo
 function PantallaDetallePersonaje() {

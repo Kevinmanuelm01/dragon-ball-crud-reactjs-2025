@@ -1,7 +1,7 @@
 // Importaciones necesarias de React y React Router
-import React, { useEffect, useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "./PantallaListaPersonajeStyle";
+import React, { useState, useEffect, useCallback } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "../styles/PantallaListaPersonajeStyle";
 
 // Componente principal que muestra una lista de personajes de Dragon Ball con funcionalidad
 // de filtrado, paginación y acciones para ver detalles, editar y borrar
@@ -173,6 +173,18 @@ function PantallaListaPersonaje() {
   // Renderizado del componente
   return (
     <div className="App">
+      {/* Logo de Dragon Ball Z */}
+      <div style={{ textAlign: "center", marginBottom: 20 }}>
+        <img
+          src="/LOGODBZ.png"
+          alt="Dragon Ball Z Logo"
+          style={{
+            maxWidth: 300,
+            height: "auto",
+            marginBottom: 10,
+          }}
+        />
+      </div>
       <h1>Lista de Personajes</h1>
 
       {/* Filtro de búsqueda y botón para mostrar el formulario */}

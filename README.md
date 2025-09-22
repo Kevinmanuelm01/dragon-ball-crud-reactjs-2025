@@ -1,70 +1,267 @@
-# Getting Started with Create React App
+# Dragon Ball CRUD React App 🐉
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📋 Description
 
-## Available Scripts
+Modern web application built with React that allows managing Dragon Ball universe characters. Features complete CRUD functionality (Create, Read, Update, Delete) consuming the public Dragon Ball API and local storage for simulated operations.
 
-In the project directory, you can run:
+## ✨ Main Features
 
-### `npm start`
+### 🔧 Core Technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React 19.1** with modern Hooks and latest optimizations
+- **React Router DOM v7** for advanced SPA navigation
+- **Create React App** as development foundation
+- **LocalStorage** for data persistence
+- **Fetch API** for REST services consumption
+- **Modular architecture** with separation of concerns
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🎯 Features
 
-### `npm test`
+- **Character visualization:** Paginated list with search filters
+- **Dragon Ball Z Logo:** Prominent visual identity in the application
+- **Intuitive navigation:** Pagination controls and view navigation
+- **Complete CRUD:** Create, edit and delete characters (simulated)
+- **Image management:** Character image upload and display
+- **Responsive interface:** Adaptive design for different devices
+- **Local persistence:** Change storage in localStorage
+- **Centralized services:** API and utilities organized modularly
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🎨 User Experience
 
-### `npm run build`
+- Clean and modern interface inspired by Dragon Ball
+- Asynchronous loading with loading states
+- Error handling and validations
+- Real-time filtering
+- Smooth navigation between screens
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Quick Start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. Clone and Install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+git clone <your-repository>
+cd dragon-ball-crud-reactjs
+npm install
+```
 
-### `npm run eject`
+### 2. Start Development
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm start
+# The application will be available at http://localhost:3000
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 3. Build for Production
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm run build
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📱 Application Usage
 
-## Learn More
+### Character List
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- View all characters with pagination
+- Filter by name in real-time
+- Access details, editing or deletion
+- Create new custom characters
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Character Detail
 
-### Code Splitting
+- Complete character information
+- Inline editing mode
+- Transformation visualization
+- Navigation between characters
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📁 Project Structure
 
-### Analyzing the Bundle Size
+```
+dragon-ball-crud-reactjs/
+├── public/
+│   ├── LOGODBZ.png          # Dragon Ball Z Logo
+│   ├── index.html           # Main HTML template
+│   └── manifest.json        # PWA configuration
+├── src/
+│   ├── components/          # Reusable components (empty, ready for expansion)
+│   ├── pages/              # Main application pages
+│   │   ├── PantallaListaPersonaje.js    # Character list with logo
+│   │   └── PantallaDetallePersonaje.js  # Character detail/editing
+│   ├── services/           # Services and APIs
+│   │   └── dragonBallApi.js # Centralized Dragon Ball API client
+│   ├── utils/              # Utilities and helpers
+│   │   └── localStorage.js  # Centralized localStorage management
+│   ├── config/             # Configurations and constants
+│   │   └── constants.js     # Application constants
+│   ├── types/              # Type definitions (JSDoc)
+│   │   └── personaje.js     # Character types and validations
+│   ├── hooks/              # Custom hooks (ready for expansion)
+│   ├── styles/             # Component-organized styles
+│   │   ├── PantallaListaPersonajeStyle.js
+│   │   └── PantallaDetallePersonajeStyle.js
+│   ├── App.js              # Root component and routing
+│   ├── App.css             # Global styles
+│   ├── index.js            # Entry point
+│   └── reportWebVitals.js  # Performance metrics
+├── package.json            # Dependencies and improved scripts
+└── README.md              # Updated documentation
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🔧 Available Scripts
 
-### Making a Progressive Web App
+### Development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm start          # Development server
+npm run dev        # Alias for npm start
+npm run build      # Production build
+npm test           # Run tests
+npm run eject      # Expose configuration (irreversible)
+```
 
-### Advanced Configuration
+### Testing and Quality
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+npm run test:coverage    # Tests with coverage report
+npm run test:ci         # Tests for CI/CD
+npm run lint            # Code analysis with ESLint
+npm run lint:fix        # Fix linting issues automatically
+```
 
-### Deployment
+### Formatting and Style
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+npm run format          # Format code with Prettier
+npm run format:check    # Check format without modifying
+npm run pre-commit      # Pre-commit validations (lint + format + test)
+```
 
-### `npm run build` fails to minify
+### Analysis and Optimization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm run build:analyze   # Build + bundle analysis
+npm run serve          # Serve production build
+npm run preview        # Build + local preview
+npm run clean          # Clean node_modules and reinstall
+```
+
+## 🎯 Technical Features
+
+### State Management
+
+- **useState** for local component state
+- **useEffect** for side effects and lifecycle
+- **useCallback** for render optimization
+- **localStorage** for data persistence
+
+### Component Architecture
+
+- Functional components with Hooks
+- **Modular separation:** pages, services, utils, config, types
+- **Centralized services:** dragonBallApi.js for all requests
+- **Reusable utilities:** localStorage.js for data management
+- **Organized constants:** constants.js for configuration
+- **Documented types:** JSDoc for data definitions
+- JS object style reuse
+- Centralized error handling
+
+### API Integration
+
+- Consumption of [Dragon Ball API](https://dragonball-api.com/)
+- Loading and error state handling
+- Client-side pagination and filtering
+- Local data fallback
+
+### Optimizations
+
+- Image lazy loading
+- Search filter debouncing
+- Expensive function memoization
+- Efficient re-render management
+
+## 🌐 External API
+
+### Dragon Ball API
+
+- **Base URL:** `https://dragonball-api.com/api`
+- **Used Endpoints:**
+  - `GET /characters?page={n}&limit={n}` - Paginated list
+  - `GET /characters/{id}` - Character detail
+- **Features:** Public REST API, no authentication required
+
+## 💾 Local Storage
+
+### LocalStorage Keys
+
+- `personajesCreados` - User-created characters
+- `personajesEliminados` - Deleted character IDs
+- Automatic change persistence
+- Synchronization with external API
+
+## 🔒 Security Considerations
+
+- Form input validation
+- User data sanitization
+- Safe handling of uploaded images
+- XSS prevention in dynamic content
+
+## 📦 Main Dependencies
+
+### Core Framework
+
+- **React:** 19.1.0 - Main framework with latest features
+- **React DOM:** 19.1.0 - Optimized web rendering
+- **React Router DOM:** 7.9.1 - SPA navigation with new functionalities
+
+### Development and Build
+
+- **react-scripts:** 5.0.1 - Development and build tools
+- **web-vitals:** 4.2.4 - Updated performance metrics
+
+### Testing (Updated)
+
+- **@testing-library/react:** 13.4.0 - React component testing
+- **@testing-library/jest-dom:** 6.6.3 - Additional Jest matchers
+- **@testing-library/user-event:** 14.5.2 - User event simulation
+- **@testing-library/dom:** 10.4.0 - DOM testing utilities
+
+### 🚀 Upcoming Improvements
+
+### Planned Features
+
+- [ ] **TypeScript:** Gradual migration for better type safety
+- [ ] **Unit tests:** Complete coverage of components and services
+- [ ] **Complete PWA:** Service workers and offline functionality
+- [ ] **Image optimization:** Lazy loading and WebP
+- [ ] **Dark/light mode:** Dynamic theme system
+- [ ] **Internationalization:** Multi-language support (i18n)
+
+### Technical Improvements
+
+- [ ] **Global state:** Context API or Zustand for advanced management
+- [ ] **Smart caching:** React Query for request optimization
+- [ ] **Bundle splitting:** Code splitting by routes
+- [ ] **Performance:** Memoization and React 19 optimizations
+- [ ] **Accessibility:** WCAG 2.1 AA compliance
+- [ ] **CI/CD:** Automated pipeline with GitHub Actions
+
+## 🤝 Contributing
+
+1. Fork the project
+2. Create feature branch (`git checkout -b feature/new-feature`)
+3. Commit changes (`git commit -m 'Add new feature'`)
+4. Push to branch (`git push origin feature/new-feature`)
+5. Create Pull Request
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+## 🙏 Credits
+
+- **API:** [Dragon Ball API](https://dragonball-api.com/) for their excellent service
+- **Framework:** [Create React App](https://github.com/facebook/create-react-app)
+- **Inspiration:** Dragon Ball universe by Akira Toriyama
+
+---
+
+⚡ **Developed with passion for the Dragon Ball universe!** 🐉

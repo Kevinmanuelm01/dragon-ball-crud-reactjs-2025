@@ -1,8 +1,8 @@
 // App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PantallaListaPersonaje from "./PantallaListaPersonaje";
-import PantallaDetallePersonaje from "./PantallaDetallePersonaje";
+import PantallaListaPersonaje from "./pages/PantallaListaPersonaje";
+import PantallaDetallePersonaje from "./pages/PantallaDetallePersonaje";
 import "./App.css";
 
 function App() {
