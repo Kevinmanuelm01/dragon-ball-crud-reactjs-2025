@@ -1,7 +1,7 @@
 // Importaciones necesarias de React y React Router
 import React, { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "../styles/PantallaListaPersonajeStyle";
+import * as S from "../styles/PantallaListaPersonaje.styles";
 
 // Componente principal que muestra una lista de personajes de Dragon Ball con funcionalidad
 // de filtrado, paginación y acciones para ver detalles, editar y borrar
@@ -172,36 +172,32 @@ function PantallaListaPersonaje() {
 
   // Renderizado del componente
   return (
-    <div className="App">
-      {/* Logo de Dragon Ball Z */}
-      <div style={{ textAlign: "center", marginBottom: 20 }}>
-        <img
+    <S.Container>
+      {/* Header con logo y título */}
+      <S.Header>
+        <S.Logo
           src="/LOGODBZ.png"
           alt="Dragon Ball Z Logo"
-          style={{
-            maxWidth: 300,
-            height: "auto",
-            marginBottom: 10,
-          }}
         />
-      </div>
-      <h1>Lista de Personajes</h1>
+        <S.Title>Lista de Personajes 🐉</S.Title>
+      </S.Header>
 
-      {/* Filtro de búsqueda y botón para mostrar el formulario */}
-      <input
-        type="text"
-        placeholder="Filtrar por nombre..."
-        value={filtro}
-        onChange={handleFiltroChange}
-        style={{ marginBottom: 20, padding: 8, width: 250 }}
-      />
-
-      <button
-        className="create-button"
-        style={{ marginBottom: 20, marginLeft: 10, padding: 8 }}
-        onClick={() => setShowForm((v) => !v)}>
-        {showForm ? "Cancelar" : "Agregar personaje"}
-      </button>
+      {/* Toolbar con búsqueda y botón agregar */}
+      <S.Toolbar>
+        <S.SearchContainer>
+          <S.SearchInput
+            type="text"
+            placeholder="Filtrar por nombre..."
+            value={filtro}
+            onChange={handleFiltroChange}
+          />
+        </S.SearchContainer>
+        <S.ToolbarActions>
+          <S.AddBtn onClick={() => setShowForm((v) => !v)}>
+            {showForm ? "❌ Cancelar" : "➕ Agregar personaje"}
+          </S.AddBtn>
+        </S.ToolbarActions>
+      </S.Toolbar>
 
       {/* Formulario de agregar nuevo personaje */}
       {showForm && (
@@ -374,87 +370,79 @@ function PantallaListaPersonaje() {
 
       {/* Manejo de estados de carga y error */}
       {loading ? (
-        <div>Cargando...</div>
+        <S.LoadingContainer>Cargando... ⏳</S.LoadingContainer>
       ) : error ? (
-        <div style={{ color: "red" }}>{error}</div>
+        <S.ErrorContainer>{error}</S.ErrorContainer>
       ) : (
-        <>
+        <S.Main>
           {/* Listado de personajes en tabla */}
-          <table style={styles.table}>
-            <thead>
-              <tr>
-                <th style={styles.th}>ID</th>
-                <th style={styles.th}>Imagen</th>
-                <th style={styles.th}>Nombre</th>
-                <th style={styles.th}>Raza</th>
-                <th style={styles.th}>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* Iteración sobre los personajes filtrados */}
-              {personajesFiltrados.map((p) => (
-                <tr key={p.id} style={{ borderBottom: "1px solid #ccc" }}>
-                  <td style={styles.td}>{p.id}</td>
-                  <td style={styles.td}>
-                    {/* Imagen del personaje */}
-                    <img src={p.image} alt={p.name} style={styles.image} />
-                  </td>
-                  <td
-                    style={{
-                      ...styles.td,
-                      cursor: "pointer",
-                      color: "#2196f3",
-                    }}
-                    onClick={() => handleVerDetalle(p.id)}>
-                    {/* Nombre del personaje, clickeable para ver detalle */}
-                    {p.name}
-                  </td>
-                  <td style={styles.td}>{p.race}</td>
-                  <td style={styles.td}>
-                    {/* Botones de acción para cada personaje */}
-                    <button
-                      style={styles.actionButton}
-                      onClick={() => handleVerDetalle(p.id)}>
-                      Ver
-                    </button>{" "}
-                    <button
-                      style={styles.actionButton}
-                      onClick={() => handleEditar(p.id)}>
-                      Editar
-                    </button>{" "}
-                    <button
-                      style={styles.actionButton}
-                      onClick={() => handleBorrar(p.id)}>
-                      Borrar
-                    </button>
-                  </td>
+          <S.TableContainer>
+            <S.Table>
+              <thead>
+                <tr>
+                  <S.TableHeader>ID</S.TableHeader>
+                  <S.TableHeader>Imagen</S.TableHeader>
+                  <S.TableHeader>Nombre</S.TableHeader>
+                  <S.TableHeader>Raza</S.TableHeader>
+                  <S.TableHeader>Acciones</S.TableHeader>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {/* Iteración sobre los personajes filtrados */}
+                {personajesFiltrados.map((p) => (
+                  <S.TableRow key={p.id}>
+                    <S.TableCell>{p.id}</S.TableCell>
+                    <S.TableCell>
+                      {/* Imagen del personaje */}
+                      <S.TableImage src={p.image} alt={p.name} />
+                    </S.TableCell>
+                    <S.TableCell>
+                      {/* Nombre del personaje, clickeable para ver detalle */}
+                      <S.ClickableName onClick={() => handleVerDetalle(p.id)}>
+                        {p.name}
+                      </S.ClickableName>
+                    </S.TableCell>
+                    <S.TableCell>{p.race}</S.TableCell>
+                    <S.TableCell>
+                      {/* Botones de acción para cada personaje */}
+                      <S.ActionButtonsContainer>
+                        <S.ActionButton $variant="view" onClick={() => handleVerDetalle(p.id)}>
+                          👁️ Ver
+                        </S.ActionButton>
+                        <S.ActionButton $variant="edit" onClick={() => handleEditar(p.id)}>
+                          ✏️ Editar
+                        </S.ActionButton>
+                        <S.ActionButton $variant="delete" onClick={() => handleBorrar(p.id)}>
+                          🗑️ Borrar
+                        </S.ActionButton>
+                      </S.ActionButtonsContainer>
+                    </S.TableCell>
+                  </S.TableRow>
+                ))}
+              </tbody>
+            </S.Table>
+          </S.TableContainer>
 
           {/* Controles de paginación */}
-          <div style={styles.pagination}>
-            <button
-              style={styles.actionButton}
+          <S.PaginationContainer>
+            <S.PaginationButton
               onClick={() => setPagina((p) => Math.max(1, p - 1))}
               disabled={pagina === 1}>
-              Anterior
-            </button>
-            <span style={{ margin: "0 10px" }}>
+              ⬅️ Anterior
+            </S.PaginationButton>
+            <S.PaginationInfo>
               Página {pagina} de {totalPaginas}
-            </span>
-            <button
-              style={styles.actionButton}
+            </S.PaginationInfo>
+            <S.PaginationButton
               onClick={() =>
                 setPagina((p) => (pagina === totalPaginas ? 1 : p + 1))
               }>
-              Siguiente
-            </button>
-          </div>
-        </>
+              Siguiente ➡️
+            </S.PaginationButton>
+          </S.PaginationContainer>
+        </S.Main>
       )}
-    </div>
+    </S.Container>
   );
 }
 
